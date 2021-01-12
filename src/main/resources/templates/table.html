@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Lista</title>
+    <title>Tabela</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -10,6 +10,29 @@
 
 <div style="width: 500px; margin: 50px auto">
 <!--    div wyśrotkowujący-->
+
+<!--    //tabela-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product, iter: ${products}">
+<!--            iter ponumeruje wiersze w tabeli-->
+            <th scope="row" th:text="${iter.count}">1</th>
+<!--            iter ponumeruje wiersze w tabeli-->
+            <td th:text="${product.name}">Mark</td>
+            <td th:text="|${#numbers.formatDecimal(product.price, 0, 'WHITESPACE', 2, 'COMMA')} zł|">Otto</td>
+            <td>@mdo</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
 
     <!--    wyświetlanie listy-->
 <ul class="list-group">

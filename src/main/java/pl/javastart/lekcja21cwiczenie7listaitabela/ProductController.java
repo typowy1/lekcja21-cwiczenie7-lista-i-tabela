@@ -21,6 +21,18 @@ public class ProductController {
     // wyświetlenie przefiltrowanej listy produktów
     @GetMapping("/lista")
     public String list(Model model) {
+        prepareDataForTableOrList(model);
+
+        return "list";
+    }
+
+    @GetMapping("/tabela")
+    public String table(Model model) {
+        prepareDataForTableOrList(model);
+        return "table";
+    }
+
+    private void prepareDataForTableOrList(Model model) {
         List<Product> products;
         products = productRepository.findAll();
 
@@ -32,9 +44,8 @@ public class ProductController {
             sum += product.getPrice();
         }
         model.addAttribute("priceSum", sum); // model dla sumy
-
-        return "list";
     }
+
 
     //post maping do dodawania produktów
     @PostMapping("/dodaj")
